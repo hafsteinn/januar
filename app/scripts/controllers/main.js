@@ -1,10 +1,47 @@
 'use strict';
 
 angular.module('januarApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl',
+  ['$scope', 'loggerFactory',
+   function ($scope, loggerFactory) {
+
+   	var start,end;
+
+   	$scope.submit = function(){
+
+   		//calculate and round time
+   		var milliseconds = Math.abs(new Date(start) - new Date(end));
+   		var diff = milliseconds / 1000 / 60;
+   		var time = (Math.floor(diff/15) * 15);
+
+   		//add item to DB and retreive updated array
+   		loggerFactory.addEntry($scope.title, $scope.description, start, end,time/60);
+   		$scope.loggedProjects = loggerFactory.getMockDB();
+
+   		//get statistics
+   		$scope.numberOfItems = $scope.loggedProjects.length;
+   		$scope.totalTime = 0;
+   		$scope.loggedProjects.forEach(function(entry){
+   			$scope.totalTime = $scope.totalTime + entry.total;
+   			console.log(entry);
+   		});
+
+   		//clear
+   		$scope.title = "";
+   		$scope.description = "";
+   		$scope.date = null;
+   	};
+
+	$('#startDateInput').datetimepicker({
+		onChangeDateTime:function(dp,$input){
+			start = $input.val();
+		}
+	});
+
+	$('#endDateInput').datetimepicker({
+		onChangeDateTime:function(dp,$input){
+			end = $input.val();
+		}
+	});
+
+  }]);
