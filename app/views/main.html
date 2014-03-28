@@ -1,36 +1,26 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">januar</h3>
-</div>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
+<section class="container" ng-controller="MainCtrl">
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <section class="logger">
+    <form class="input-group">
+      <input id="textinput" type="text" class="form-control" placeholder="Title" ng-model="title" required>
+      <textarea id="textinput" class="form-control"  placeholder="Project description" rows="4" cols="50" ng-model="description" required></textarea>
+      <input  id="startDateInput" class="date" type="text" required>
+      <input  id="endDateInput" class="date" type="text" required>
+      <button type="button" class="btn btn-primary" ng-click="submit()">Submit</button>
+    </form>
+  </section>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+  <section class="listOfContents">
+    <section class="listItem" ng-repeat="project in loggedProjects">
+      <h4>{{project.title}} | {{project.total}}</h4>
+      <p id="description">{{project.description}}</p>
+    </section>
+  </section>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+  <section class="total">
+    <h2>{{numberOfItems}} | {{totalTime}}</h2>
+  </section>
 
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
-</div>
+
+</section>
