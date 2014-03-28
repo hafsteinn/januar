@@ -12,8 +12,8 @@
 .logger
 {
   width:50%;
-  order 1:
-  flex: 0 1 10px  ;
+  order:1;
+  flex: 0 1 auto  ;
   align-self: auto;
   min-width: 50%;
   min-height: auto;
@@ -31,20 +31,32 @@
 
 .listOfContents
 {
+
   margin-top:20px;
-    width:50%;
-    height:200px;
-  order 1:
-  flex: 0 1 10px  ;
+  width:50%;
+  height:200px;
+
+  order:2;
+  flex: 0 1 auto  ;
   align-self: auto;
   min-width: 50%;
   min-height: auto;
   overflow-y:scroll;
 }
 
+.total
+{
+  order:3;
+  flex: 0 1 auto ;
+  align-self: center;
+  min-width: 10%;
+  min-height: auto;
+}
+
 .listItem
 {
   border-radius: 5px
+  border-style: dotted;
 }
 
 #description
